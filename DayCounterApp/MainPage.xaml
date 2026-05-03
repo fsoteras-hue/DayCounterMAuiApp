@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DayCounterApp.MainPage"
+             BackgroundColor="{StaticResource Primary}">
+
+    <Grid RowDefinitions="*, Auto, Auto, *"
+          Padding="40">
+        
+        <!-- Top Spacer -->
+        <BoxView Grid.Row="0" Color="Transparent" />
+        
+        <!-- Day Count Display -->
+        <VerticalStackLayout Grid.Row="1" 
+                           Spacing="10"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center">
+            <Label x:Name="DayCountLabel"
+                   Text="0"
+                   FontSize="120"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   SemanticProperties.HeadingLevel="Level1" />
+            <Label x:Name="DayTextLabel"
+                   Text="Days"
+                   FontSize="32"
+                   TextColor="White"
+                   Opacity="0.8"
+                   HorizontalTextAlignment="Center"
+                   SemanticProperties.Description="Number of days elapsed" />
+        </VerticalStackLayout>
+
+        <!-- Buttons -->
+        <VerticalStackLayout Grid.Row="2"
+                           Spacing="15"
+                           Margin="0,60,0,0">
+            <Button x:Name="StartButton"
+                    Text="Start Counting"
+                    Clicked="OnStartClicked"
+                    BackgroundColor="White"
+                    TextColor="{StaticResource Primary}"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    HeightRequest="60"
+                    CornerRadius="30"
+                    SemanticProperties.Hint="Start counting days from today" />
+            
+            <Button x:Name="ResetButton"
+                    Text="Reset"
+                    Clicked="OnResetClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="White"
+                    BorderColor="White"
+                    BorderWidth="2"
+                    FontSize="18"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    IsVisible="False"
+                    SemanticProperties.Hint="Reset the day counter" />
+        </VerticalStackLayout>
+
+        <!-- Bottom Spacer -->
+        <BoxView Grid.Row="3" Color="Transparent" />
+    </Grid>
+
+</ContentPage>
