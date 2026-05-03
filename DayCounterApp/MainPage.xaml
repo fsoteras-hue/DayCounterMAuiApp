@@ -2,13 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayCounterApp.MainPage"
-             BackgroundColor="{StaticResource Primary}">
+             x:Name="MainPageRoot">
 
     <Grid RowDefinitions="*, Auto, Auto, *"
           Padding="40">
-        
-        <!-- Top Spacer -->
-        <BoxView Grid.Row="0" Color="Transparent" />
         
         <!-- Day Count Display -->
         <VerticalStackLayout Grid.Row="1" 
@@ -59,9 +56,6 @@
                     IsVisible="False"
                     SemanticProperties.Hint="Reset the day counter" />
         </VerticalStackLayout>
-
-        <!-- Bottom Spacer -->
-        <BoxView Grid.Row="3" Color="Transparent" />
     </Grid>
 
 </ContentPage>
