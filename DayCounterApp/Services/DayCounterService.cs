@@ -45,6 +45,13 @@ public class DayCounterService
         Preferences.Set(StartDateKey, now.ToString("O")); // ISO 8601 format
     }
 
+    public void StartCounterWithOffset(int daysOffset)
+    {
+        // Calculate start date by subtracting the offset days from today
+        var startDate = DateTime.Now.AddDays(-daysOffset);
+        Preferences.Set(StartDateKey, startDate.ToString("O")); // ISO 8601 format
+    }
+
     public void ResetCounter()
     {
         Preferences.Remove(StartDateKey);

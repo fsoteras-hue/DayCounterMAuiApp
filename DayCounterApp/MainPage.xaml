@@ -43,6 +43,19 @@
                     CornerRadius="30"
                     SemanticProperties.Hint="Start counting days from today" />
             
+            <Button x:Name="CustomStartButton"
+                    Text="Set Custom Start Days"
+                    Clicked="OnCustomStartClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="White"
+                    BorderColor="White"
+                    BorderWidth="2"
+                    FontSize="18"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    IsVisible="False"
+                    SemanticProperties.Hint="Set a custom number of days to start from" />
+            
             <Button x:Name="ResetButton"
                     Text="Reset"
                     Clicked="OnResetClicked"
