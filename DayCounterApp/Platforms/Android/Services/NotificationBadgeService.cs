@@ -19,6 +19,12 @@ public class NotificationBadgeService : INotificationBadgeService
         CreateNotificationChannel();
     }
 
+    public NotificationBadgeService(Context context)
+    {
+        _context = context;
+        CreateNotificationChannel();
+    }
+
     private void CreateNotificationChannel()
     {
         if (_context.GetSystemService(Context.NotificationService) is NotificationManager notificationManager)

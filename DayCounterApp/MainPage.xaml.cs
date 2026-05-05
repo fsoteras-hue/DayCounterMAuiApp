@@ -67,6 +67,7 @@ public partial class MainPage : ContentPage
 			DayCountLabel.Text = state.DaysElapsed.ToString();
 			DayTextLabel.Text = state.DaysElapsed == 1 ? "Day" : "Days";
 			StartButton.IsVisible = false;
+			CustomStartButton.IsVisible = false;
 			ResetButton.IsVisible = true;
 
 			// Update badge
@@ -77,6 +78,8 @@ public partial class MainPage : ContentPage
 			DayCountLabel.Text = "0";
 			DayTextLabel.Text = "Days";
 			StartButton.IsVisible = true;
+			// Show custom start button only on first launch (counter never started)
+			CustomStartButton.IsVisible = true;
 			ResetButton.IsVisible = false;
 
 			// Clear badge
@@ -188,6 +191,48 @@ public partial class MainPage : ContentPage
 
 		await StartButton.FadeToAsync(0, 200);
 		await StartButton.FadeToAsync(1, 200);
+	}
+
+	private async void OnCustomStartClicked(object? sender, EventArgs e)
+	{
+		// Prompt user to enter number of days
+		string? result = await DisplayPromptAsync(
+			"Custom Start Days",
+			"Enter the number of days to start from:",
+			"OK",
+			"Cancel",
+			"Enter days...",
+			maxLength: 6,
+			keyboard: Keyboard.Numeric);
+
+		if (string.IsNullOrWhiteSpace(result))
+			return;
+
+		if (int.TryParse(result, out int daysOffset) && daysOffset >= 0)
+		{
+			_counterService.StartCounterWithOffset(daysOffset);
+			UpdateDisplay();
+
+			// Provide haptic feedback
+			try
+			{
+				HapticFeedback.Default.Perform(HapticFeedbackType.Click);
+			}
+			catch
+			{
+				// Haptic feedback not available on all devices
+			}
+
+			await CustomStartButton.FadeToAsync(0, 200);
+			await CustomStartButton.FadeToAsync(1, 200);
+		}
+		else
+		{
+			await DisplayAlertAsync(
+				"Invalid Input",
+				"Please enter a valid positive number.",
+				"OK");
+		}
 	}
 
 	private async void OnResetClicked(object? sender, EventArgs e)
